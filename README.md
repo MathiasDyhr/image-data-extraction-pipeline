@@ -1,3 +1,8 @@
+## Pipeline Overview
+
+![Pipeline](images/pipeline.png)
+
+
 # Image Data Extraction Pipeline for Hardware Identification
 
 Computer vision / OCR project focused on extracting serial numbers from product images and turning unstructured image input into structured data.
@@ -10,13 +15,17 @@ This repository is a **portfolio version** of a DTU project developed with an in
 - image preprocessing and cropping
 - retraining of text-recognition models
 
+## Pipeline Overview
+
+![Pipeline](images/pipeline.png)
+
+The pipeline combines scene text detection (CRAFT), perspective correction, and OCR-based recognition (CRNN / EasyOCR-style models) to extract serial numbers from hardware images captured in real-world environments.
+
 ## Data Privacy
 
 Original product images cannot be shared publicly due to confidentiality restrictions.
 
-The examples shown here are synthetic images used only to demonstrate the pipeline.
-
-
+The examples shown here are synthetic or anonymized images used only to demonstrate the pipeline.
 
 
 ## Why this repo is a portfolio version
@@ -47,6 +56,11 @@ Typical challenges included:
 - motion blur and low image quality
 - noisy backgrounds
 - variable text and barcode visibility
+
+## Example Input Image
+
+![Example hardware image](images/example_input.jpg)
+
 
 ## Approach
 
