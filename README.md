@@ -54,7 +54,7 @@ Typical challenges included:
 
 ## Example Input Image
 
-![Example hardware image](images/example_input.jpg)
+![Example hardware image](images/example_input.png)
 
 
 ## Approach
