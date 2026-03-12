@@ -67,7 +67,7 @@ Part of my contribution involved helping adapt and debug the transfer-learning p
 
 ## Training Results
 
-<img src="images/validation_accuracy.png" width="600">
+<img src="images/validation_accuracy_plot.png" width="600">
 
 Validation accuracy during training of the recognition network.
 
