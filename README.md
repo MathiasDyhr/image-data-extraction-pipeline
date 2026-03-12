@@ -10,6 +10,15 @@ This repository is a **portfolio version** of a DTU project developed with an in
 - image preprocessing and cropping
 - retraining of text-recognition models
 
+## Data Privacy
+
+Original product images cannot be shared publicly due to confidentiality restrictions.
+
+The examples shown here are synthetic images used only to demonstrate the pipeline.
+
+
+
+
 ## Why this repo is a portfolio version
 
 The original project used company-related images and annotations that are **not included here**.
