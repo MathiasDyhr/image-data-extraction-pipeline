@@ -10,11 +10,38 @@ This repository is a **portfolio version** of a DTU project developed with an in
 - image preprocessing and cropping
 - retraining of text-recognition models
 
+
 ## Pipeline Overview
 
-![Pipeline](images/pipeline.png)
+<img src="images/pipeline.png" width="800">
 
-The pipeline combines scene text detection (CRAFT), perspective correction, and OCR-based recognition (CRNN / EasyOCR-style models) to extract serial numbers from hardware images captured in real-world environments.
+The pipeline combines scene text detection (CRAFT), perspective correction, and OCR-based recognition.
+
+---
+
+## Example Input
+
+<img src="images/example_input.png" width="500">
+
+Example image of an electrical cabinet where the serial number must be extracted.
+
+---
+
+## Serial Number Detection
+
+<img src="images/serial_crop.png" width="500">
+
+Detected text region after perspective correction before OCR.
+
+---
+
+## Training Results
+
+<img src="images/validation_accuracy.png" width="600">
+
+Validation accuracy of the recognition network during training.
+
+---
 
 ## Data Privacy
 
@@ -51,10 +78,6 @@ Typical challenges included:
 - motion blur and low image quality
 - noisy backgrounds
 - variable text and barcode visibility
-
-## Example Input Image
-
-![Example hardware image](images/example_input.png)
 
 
 ## Approach
