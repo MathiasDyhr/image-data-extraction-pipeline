@@ -10,20 +10,35 @@ This repository is a **portfolio version** of a DTU project developed with an in
 - image preprocessing and cropping
 - retraining of text-recognition models
 
+---
 
 ## Pipeline Overview
 
 <img src="images/pipeline.png" width="800">
 
-The pipeline combines scene text detection (CRAFT), perspective correction, and OCR-based recognition.
+The pipeline combines scene text detection (CRAFT), perspective correction, and OCR-based recognition (CRNN / EasyOCR-style models) to extract serial numbers from hardware inspection images captured in real-world environments.
 
 ---
 
-## Example Input
+## Project Goal
+
+The objective was to reduce manual quality-assurance work by automating the extraction of hardware serial numbers from images captured in real-world conditions.
+
+Typical challenges included:
+
+- inconsistent lighting
+- camera angle/perspective distortion
+- motion blur and low image quality
+- noisy backgrounds
+- variable text and barcode visibility
+
+---
+
+## Example Input Image
 
 <img src="images/example_input.png" width="500">
 
-Example image of an electrical cabinet where the serial number must be extracted.
+Example image from a hardware inspection process. The goal is to automatically extract the serial number from the device inside the cabinet.
 
 ---
 
@@ -31,15 +46,32 @@ Example image of an electrical cabinet where the serial number must be extracted
 
 <img src="images/serial_crop.png" width="500">
 
-Detected text region after perspective correction before OCR.
+Detected text region after applying bounding-box detection and perspective transformation before OCR recognition.
+
+The pipeline detects potential serial-number regions and corrects perspective distortion before passing the cropped image to the recognition model.
+
+---
+
+## Recognition Model
+
+The recognition stage was implemented using a **CRNN-style architecture trained with CTC loss**.
+
+The project explored transfer-learning approaches using pretrained feature extractors such as:
+
+- VGG
+- ResNet
+
+Part of my contribution involved helping adapt and debug the transfer-learning pipeline so that these backbone architectures could be integrated into the training workflow.
 
 ---
 
 ## Training Results
 
-<img src="images/validation_accuracy_plot.png" width="600">
+<img src="images/validation_accuracy.png" width="600">
 
-Validation accuracy of the recognition network during training.
+Validation accuracy during training of the recognition network.
+
+Results were mixed, which is realistic when applying OCR pipelines to noisy real-world industrial images.
 
 ---
 
@@ -47,17 +79,19 @@ Validation accuracy of the recognition network during training.
 
 Original product images cannot be shared publicly due to confidentiality restrictions.
 
-The examples shown here are synthetic or anonymized images used only to demonstrate the pipeline.
+The examples shown here are **anonymized or synthetic images** used only to demonstrate the pipeline.
 
+---
 
 ## Why this repo is a portfolio version
 
 The original project used company-related images and annotations that are **not included here**.
+
 To respect confidentiality and privacy, this public version only contains:
 
 - selected code
 - notebooks for exploration
-- training / preprocessing scripts
+- training/preprocessing scripts
 - project structure and documentation
 
 The following are intentionally excluded from the public repo:
@@ -67,28 +101,7 @@ The following are intentionally excluded from the public repo:
 - serial numbers or other sensitive identifiers
 - internal result dumps and large intermediate artifacts
 
-## Project goal
-
-The objective was to reduce manual quality-assurance work by automating extraction of hardware serial numbers from images captured in real-world conditions.
-
-Typical challenges included:
-
-- inconsistent lighting
-- camera angle / perspective distortion
-- motion blur and low image quality
-- noisy backgrounds
-- variable text and barcode visibility
-
-
-## Approach
-
-The project explored multiple paths for serial-number extraction:
-
-1. **Barcode-based extraction** from meter / hardware images
-2. **Scene text detection** using CRAFT
-3. **OCR-based recognition** of detected text regions
-4. **Perspective transformation and bounding-box based cropping**
-5. **Retraining / fine-tuning** recognition models on task-specific data
+---
 
 ## Repository structure
 
@@ -102,7 +115,6 @@ The project explored multiple paths for serial-number extraction:
             craft/
                 main.py
                 craft.py
-                ...
 
     notebooks/
         BarcodeScanner_OpenCV.ipynb
@@ -111,13 +123,17 @@ The project explored multiple paths for serial-number extraction:
         Initial_accuracy.ipynb
         Initial_accuracy_clean_data.ipynb
 
+---
+
 ## Key components
 
-- **Bounding-box processing** for converting annotations into usable crops
-- **Perspective correction** for rotated / distorted regions
-- **CRAFT-based scene text detection**
-- **EasyOCR-style retraining workflow** for recognition
-- **Exploratory notebooks** for evaluating barcode and OCR performance
+- Bounding-box processing for converting annotations into usable crops
+- Perspective correction for rotated or distorted regions
+- CRAFT-based scene text detection
+- EasyOCR-style retraining workflow for recognition
+- Exploratory notebooks for evaluating barcode and OCR performance
+
+---
 
 ## Results and limitations
 
@@ -131,9 +147,18 @@ Results were mixed, which is realistic for industrial image pipelines with noisy
 - model experimentation
 - evaluation of practical feasibility
 
+---
+
 ## My contribution
 
-My contribution focused on the applied project workflow, including analysis of results, practical framing of the use case, and project documentation.
+My contribution focused on the applied project workflow, including:
+
+- analysis of model performance
+- evaluation of detection and OCR approaches
+- debugging and integration of transfer-learning pipelines
+- project documentation and reporting
+
+---
 
 ## Notes for running the code
 
@@ -141,13 +166,15 @@ Some scripts still contain **local file paths** from the original development en
 
 This repository is therefore best viewed as:
 
-- a portfolio / documentation repo
+- a portfolio/documentation repo
 - a record of the project structure and methods
 - a base for building a cleaner, reusable version later
 
+---
+
 ## Suggested next step
 
-For a fully reusable public version, I would refactor the codebase into a smaller demo pipeline with:
+For a fully reusable public version, the codebase could be refactored into a smaller demo pipeline with:
 
 - synthetic sample images
 - environment-independent paths
