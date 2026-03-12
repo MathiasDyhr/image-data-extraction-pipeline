@@ -37,7 +37,7 @@ Detected text region after perspective correction before OCR.
 
 ## Training Results
 
-<img src="images/validation accuracy plot.png" width="600">
+<img src="images/validation_accuracy_plot.png" width="600">
 
 Validation accuracy of the recognition network during training.
 
