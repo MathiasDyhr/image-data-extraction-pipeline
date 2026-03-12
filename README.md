@@ -1,8 +1,3 @@
-## Pipeline Overview
-
-![Pipeline](images/pipeline.png)
-
-
 # Image Data Extraction Pipeline for Hardware Identification
 
 Computer vision / OCR project focused on extracting serial numbers from product images and turning unstructured image input into structured data.
